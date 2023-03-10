@@ -1,0 +1,46 @@
+<div class="container">
+    <div class="message success" *ngIf="status=='success'">
+        El electrodomestico se ha guardado correctamente, puedes verla <a [routerLink]="['/detalleElectro',idGuardado]">aquí</a>.
+    </div>
+    <div class="message failed" *ngIf="status=='failed'">
+        El electrodomestico no se ha podido guardar.
+    </div>
+    <form #electroForm="ngForm" (ngSubmit)="guardarElectrodomestico(electroForm)">
+        <p>
+            <label for="nombre">Nombre</label>
+            <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="electro.nombre" required>
+            <span *ngIf="nombre.touched && !nombre.valid">
+                Nombre obligatorio
+            </span>
+        </p>
+        <p>
+            <label for="estado">Estado</label>
+            <input type="text" name="estado" #estado="ngModel" [(ngModel)]="electro.estado" required>
+            <span *ngIf="estado.touched && !estado.valid">
+                Estado obligatorio
+            </span>
+        </p>
+        <p>
+            <label for="precio">Precio</label>
+            <input type="text" name="precio" #precio="ngModel" [(ngModel)]="electro.precio" required  >
+            <span *ngIf="precio.touched && !precio.valid">
+                Precio obligatorio
+            </span>
+        </p>
+        <p>
+            <label for="descripcion">Depcripcion</label>
+            <input type="text" name="descripcion" #descripcion="ngModel" [(ngModel)]="electro.descripcion" required  >
+            <span *ngIf="descripcion.touched && !descripcion.valid">
+                Descripción obligatoria
+            </span>
+        </p>
+        <p>
+            <label for="imagen">Imagen</label>
+            <span *ngIf="electro.imagen" style="float: none;">
+                <img src="{{url+'get-imagen/'+electro.imagen}}" style="width: 100px;">
+            </span>
+            <input type="file" #archivoImagen placeholder="Seleccionar imagen" (change)="imagenChangeEvent($event)">
+        </p>
+        <input type="submit" value="Guardar" [disabled]="!electroForm.form.valid">
+    </form>
+</div>

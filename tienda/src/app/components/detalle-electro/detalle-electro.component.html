@@ -1,0 +1,23 @@
+<h2>Informacion del electrodoméstico </h2>
+<div class="container" *ngIf="electro">
+    <div class="imagen" *ngIf="electro.imagen">
+        <img src="{{url+'get-imagen/'+electro.imagen}}" *ngIf="electro.imagen">
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="data">
+    <h3>{{electro.nombre}}</h3>
+    <h3>{{electro.estado}}</h3>
+    <h3>{{electro.precio}}</h3>
+    <h3>{{electro.descripcion}}</h3>
+    <p *ngIf="confirm == false">
+        <button [routerLink]="['/editarElectro',electro._id]" class="button-edit">Editar</button>
+        <button (click)="setConfirm(true)" class="button-delete">Borrar</button>
+    </p>
+
+    <p *ngIf="confirm == true">
+        <span class="confirm">Estas seguro que quieres eliminar el electrodomestico</span> <br>
+        <button (click)="setConfirm(false)" class="button-edit">Cancelar</button>
+        <button (click)="borrarElectro(electro._id)" class="button-delete">eliminar definitivamente</button>
+    </p>
+</div>

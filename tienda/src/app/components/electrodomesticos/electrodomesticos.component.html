@@ -1,0 +1,23 @@
+<h2>ELECTRODOMESTICOS</h2>
+<ul>
+    <li *ngFor="let electrodomestico of electrodomesticos"  class="electrodomestico">
+        <a [routerLink]="['/detalleElectro/', electrodomestico._id]">
+            <img src="{{url+'get-imagen/'+electrodomestico.imagen}}" *ngIf="electrodomestico.imagen">
+            <h3>{{electrodomestico.nombre}}-{{electrodomestico.precio}}</h3>
+        </a>
+    </li>
+</ul>
+
+<h2>Busqueda por nombre de producto</h2>
+<input type="text" name="buscar" #buscar="ngModel" [(ngModel)]="nombre" required>
+<button (click)="getElectros()">Buscar</button>
+
+<ul>
+  <li *ngFor="let electro of electros">
+    <a [routerLink]="['/detalleElectro/', electro._id]">
+        <img src="{{url+'get-imagen/'+electro.imagen}}" *ngIf="electro.imagen">
+        <h3>{{electro.nombre}}-{{electro.precio}}</h3>
+    </a>
+  </li>
+</ul>
+
