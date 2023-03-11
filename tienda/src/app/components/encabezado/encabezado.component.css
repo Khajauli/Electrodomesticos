@@ -1,0 +1,7 @@
+.nav-link {
+    font-size: 25px;
+  }
+  
+  .nav-link:hover {
+    background-color: rgb(0, 106, 255);
+  }
