@@ -15,6 +15,7 @@ export class ElectrodomesticosComponent implements OnInit{
   public electros:Electrodomestico[];
   public nombre:string;
   public url:string;
+  public categorias: string[];
 
   constructor(
     private _electroService:ElectrodomesticoService
@@ -23,6 +24,7 @@ export class ElectrodomesticosComponent implements OnInit{
     this.electrodomesticos=[];
     this.electros=[];
     this.nombre='';
+    this.categorias = [];
   }
 
 
@@ -35,9 +37,11 @@ export class ElectrodomesticosComponent implements OnInit{
       if (response.electrodomesticos){
         this.electrodomesticos=response.electrodomesticos;
         console.log(this.electrodomesticos);
+        this.obtenerCategorias();
       }
     },
     error=>{
+      console.log("error1");
       console.log(<any>error);
     }
   );
@@ -55,5 +59,23 @@ export class ElectrodomesticosComponent implements OnInit{
         console.log(<any>error);
       }
     )
+  }
+  obtenerCategorias() {
+    let categorias: string[] = [];
+    let contador: number;
+
+    for (let categoria of this.electrodomesticos) {
+      contador = 0;
+      for (let producto of this.electrodomesticos) {
+        if (producto.estado === categoria.estado) {
+          contador++;
+        }
+      }
+      if (!categorias.includes(categoria.estado)) {
+        categorias.push(categoria.estado);
+        console.log(categoria.estado + ': ' + contador);
+      }
+    }
+    this.categorias = categorias; 
   }
 }

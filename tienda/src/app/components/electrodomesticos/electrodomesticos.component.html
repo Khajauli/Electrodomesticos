@@ -1,12 +1,15 @@
-<h2>ELECTRODOMESTICOS</h2>
+<h2>Nuestros roductos</h2>
 <ul>
-    <li *ngFor="let electrodomestico of electrodomesticos"  class="electrodomestico">
-        <a [routerLink]="['/detalleElectro/', electrodomestico._id]">
-            <img src="{{url+'get-imagen/'+electrodomestico.imagen}}" *ngIf="electrodomestico.imagen">
-            <h3>{{electrodomestico.nombre}}-{{electrodomestico.precio}}</h3>
+    <ng-container *ngFor="let categoria of categorias">
+      <h2>{{categoria}}</h2>
+       <li *ngFor="let electrodomestico of electrodomesticos" class="electrodomestico" >
+        <a *ngIf="electrodomestico.estado === categoria " [routerLink]="['/detalleElectro/', electrodomestico._id]">
+          <img src="{{url+'get-imagen/'+electrodomestico.imagen}}" *ngIf="electrodomestico.imagen">
+            <h3>{{electrodomestico.nombre}} - {{electrodomestico.precio}}</h3>
         </a>
-    </li>
-</ul>
+      </li> 
+    </ng-container>
+  </ul>
 
 <h2>Busqueda por nombre de producto</h2>
 <input type="text" name="buscar" #buscar="ngModel" [(ngModel)]="nombre" required>

@@ -4,8 +4,9 @@ import { ContactoComponent } from './components/contacto/contacto.component';
 import { CreateElectroComponent } from './components/create-electro/create-electro.component';
 import { DetalleElectroComponent } from './components/detalle-electro/detalle-electro.component';
 import { EditarElectroComponent } from './components/editar-electro/editar-electro.component';
+import { ElectrodomesticosComponent } from './components/electrodomesticos/electrodomesticos.component';
 import { HomeComponent } from './components/home/home.component';
-import { ElectrodomesticoService } from './services/electrodomestico.service';
+
 
 const routes: Routes = [
     {path:'inicio',component:HomeComponent},
@@ -13,7 +14,7 @@ const routes: Routes = [
     {path:'contacto',component:ContactoComponent},
     {path:'detalleElectro/:id',component:DetalleElectroComponent},
     {path:'editarElectro/:id',component:EditarElectroComponent},
-    {path:'electrodomesticos',component:ElectrodomesticoService},
+    {path:'electrodomesticos',component:ElectrodomesticosComponent},
     {path:'**',component:HomeComponent},
   ];
   
